@@ -1,22 +1,37 @@
 # ChadWallet brand assets
 
-This folder holds the brand assets used across the web app. The current
-`logo.svg` is a **placeholder** generated to match the Solana-flavored
-green/purple theme.
+Official ChadWallet logo assets used across the web app.
 
-## Dropping in the real assets
+| File | What it is | Used where |
+| --- | --- | --- |
+| `logo-mark.png` | White chad mark on **transparent** background (derived from `logo-dark.png`) | Navbar, footer, Privy login modal (`components/layout/Logo.tsx`) |
+| `logo-dark.png` | White chad on black square | Source for the transparent mark + favicon |
+| `logo-light.png` | Black chad on white square | Use on light surfaces if needed |
+| `../../app/icon.png` | 256px favicon (resized from `logo-dark.png`) | Browser tab icon |
 
-The official assets live in the shared Google Drive folder:
-https://drive.google.com/drive/folders/1j4PZng-sJHxqAATUF1WYw1_jm8nyQwCE
-(it wasn't reachable from the build tooling, so swap them in here).
+## Regenerating the transparent mark
 
-1. **Logo / icon** — replace `public/brand/logo.svg` (keep the filename) or add
-   `logo.png` and update the `src` in `components/layout/Logo.tsx`.
-2. **Wordmark** — if you have a full "ChadWallet" wordmark, drop it as
-   `public/brand/wordmark.svg` and use it in `Logo.tsx`.
-3. **Colors** — set the exact hex values in `app/globals.css` under `:root`
-   (`--primary`, `--accent`, `--background`, …). Everything themes off those.
-4. **OG / social image** — add `public/og.png` (1200×630) for link previews.
-5. **Favicon** — replace `app/favicon.ico`.
+`logo-mark.png` is generated from `logo-dark.png` by mapping luminance → alpha
+(black background becomes transparent, white line-art stays). To regenerate after
+replacing `logo-dark.png`:
 
-No other code changes are required — the rest of the UI reads from these.
+```js
+// node (with `npm i --no-save pngjs`), run from the project root
+const fs = require("fs");
+const { PNG } = require("pngjs");
+const src = PNG.sync.read(fs.readFileSync("public/brand/logo-dark.png"));
+const out = new PNG({ width: src.width, height: src.height });
+for (let i = 0; i < src.data.length; i += 4) {
+  const lum = (src.data[i] + src.data[i + 1] + src.data[i + 2]) / 3;
+  out.data[i] = out.data[i + 1] = out.data[i + 2] = 255;
+  out.data[i + 3] = Math.round(lum);
+}
+fs.writeFileSync("public/brand/logo-mark.png", PNG.sync.write(out));
+```
+
+Then `sips -z 256 256 public/brand/logo-dark.png --out app/icon.png` for the favicon.
+
+## Colors
+
+Brand colors live in `app/globals.css` under `:root` (`--primary`, `--accent`,
+`--background`, …). Everything themes off those.

@@ -33,16 +33,6 @@ if (typeof window === "undefined") {
 const nextConfig: NextConfig = {
   // Token logos come from many arbitrary CDNs; we render them via <img>, so no
   // next/image domain config is needed here.
-
-  // Keep the wallet SDKs out of the bundled SSR chunk so they're require()'d via
-  // Node at render time — after the localStorage shim above has run in the
-  // worker. Prevents Node 25's throwing experimental localStorage from crashing
-  // prerender. Harmless on Node <=22 (where server localStorage is undefined).
-  serverExternalPackages: [
-    "@privy-io/react-auth",
-    "@solana/kit",
-    "@solana-program/memo",
-  ],
 };
 
 export default nextConfig;

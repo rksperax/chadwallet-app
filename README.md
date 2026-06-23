@@ -62,9 +62,11 @@ only after you've tested, to enable real on-chain execution.
   Next.js route handlers under `app/api/*`; the browser never sees those keys.
 - **Charts** use TradingView's open-source `lightweight-charts` fed by BirdEye
   OHLCV (no TradingView license needed).
-- **Node 25 note:** `next.config.ts` installs an in-memory `localStorage` shim
-  and externalizes the wallet SDKs so Node 25's throwing experimental
-  `localStorage` doesn't crash SSR. Harmless on Node ≤22 / Vercel.
+- **Node 25 note:** the npm scripts run through `scripts/run-next.mjs`, which
+  adds Node's `--localstorage-file` flag **only on Node ≥25** (whose experimental
+  `localStorage` global otherwise throws during SSR and crashes wallet SDKs).
+  On Node ≤22 (e.g. Vercel) the flag isn't added and builds run normally.
+  `next.config.ts` also installs an in-memory `localStorage` shim as a fallback.
 
 ## Brand assets
 
