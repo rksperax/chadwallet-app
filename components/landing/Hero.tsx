@@ -21,14 +21,20 @@ export default function Hero() {
           From memecoins to viral tokens, trade any Solana coin in seconds.
         </p>
 
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-          <Link href={`/trade/${DEFAULT_MINT}`}>
-            <Button variant="cta" className="px-7 py-3 text-base">
+        <div className="mt-10 flex flex-col items-center gap-3.5 sm:flex-row">
+          <Link href={`/trade/${DEFAULT_MINT}`} className="w-full sm:w-auto">
+            <Button
+              variant="cta"
+              className="w-full min-w-[200px] rounded-2xl px-8 py-4 text-base sm:w-auto"
+            >
               Start trading
             </Button>
           </Link>
-          <Link href="/#download">
-            <Button variant="secondary" className="px-7 py-3 text-base">
+          <Link href="/#download" className="w-full sm:w-auto">
+            <Button
+              variant="glass"
+              className="w-full min-w-[200px] rounded-2xl px-8 py-4 text-base sm:w-auto"
+            >
               Download app
             </Button>
           </Link>

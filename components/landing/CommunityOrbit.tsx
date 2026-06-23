@@ -79,7 +79,7 @@ export default function CommunityOrbit() {
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
           <Link href={`/trade/${DEFAULT_MINT}`}>
-            <Button variant="cta" className="px-7 py-3 text-base">
+            <Button variant="cta" className="rounded-2xl px-8 py-4 text-base">
               Start trading
             </Button>
           </Link>
