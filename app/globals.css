@@ -1,26 +1,113 @@
 @import "tailwindcss";
 
+/* ===== ChadWallet brand tokens =====
+   Solana-flavored: vivid green + purple on deep near-black.
+   To rebrand, edit the values in :root below. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #07090e;
+  --surface: #0d111a;
+  --surface-2: #141a26;
+  --surface-3: #1b2230;
+  --border: #232c3b;
+  --foreground: #e9eef6;
+  --muted: #8a97ab;
+
+  --primary: #14f195; /* chad green */
+  --primary-foreground: #04140d;
+  --accent: #9945ff; /* solana purple */
+
+  --positive: #16c784;
+  --negative: #f6465d;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-border: var(--border);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Subtle space-glow background used on the landing hero */
+.bg-space {
+  background:
+    radial-gradient(60% 50% at 50% -10%, rgba(153, 69, 255, 0.18), transparent 70%),
+    radial-gradient(40% 40% at 85% 20%, rgba(20, 241, 149, 0.12), transparent 70%),
+    radial-gradient(50% 50% at 10% 30%, rgba(153, 69, 255, 0.1), transparent 70%),
+    var(--background);
 }
+
+.text-gradient {
+  background: linear-gradient(90deg, #14f195, #9945ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== Rotating banner marquee ===== */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-reverse .marquee-track {
+  animation-direction: reverse;
+}
+
+/* Thin scrollbars for the trading panels */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+
+@keyframes flash-green {
+  from { background-color: rgba(22, 199, 132, 0.18); }
+  to { background-color: transparent; }
+}
+@keyframes flash-red {
+  from { background-color: rgba(246, 70, 93, 0.18); }
+  to { background-color: transparent; }
+}
+.flash-green { animation: flash-green 0.8s ease-out; }
+.flash-red { animation: flash-red 0.8s ease-out; }

@@ -1,0 +1,34 @@
+"use client";
+
+import { PrivyProvider } from "@privy-io/react-auth";
+import { ReactNode } from "react";
+
+export default function Providers({ children }: { children: ReactNode }) {
+  const appId = process.env.NEXT_PUBLIC_PRIVY_APP_ID;
+
+  // Without an app id Privy can't initialize — render the app anyway so the
+  // landing/trading pages still work (login button will prompt to configure).
+  if (!appId) {
+    return <>{children}</>;
+  }
+
+  return (
+    <PrivyProvider
+      appId={appId}
+      config={{
+        appearance: {
+          theme: "dark",
+          accentColor: "#14f195",
+          logo: "/brand/logo.svg",
+          walletChainType: "solana-only",
+        },
+        loginMethods: ["google", "apple"],
+        embeddedWallets: {
+          solana: { createOnLogin: "users-without-wallets" },
+        },
+      }}
+    >
+      {children}
+    </PrivyProvider>
+  );
+}
