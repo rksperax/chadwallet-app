@@ -31,8 +31,8 @@ export default function HoldersList({ mint }: { mint: string }) {
           </tr>
         </thead>
         <tbody>
-          {holders.map((h) => (
-            <tr key={h.owner} className="border-b border-border/40">
+          {holders.map((h, i) => (
+            <tr key={`${h.owner}-${i}`} className="border-b border-border/40">
               <td className="px-4 py-2 text-muted">{h.rank}</td>
               <td className="px-4 py-2 font-mono text-xs">
                 <a

@@ -41,9 +41,9 @@ export default function LiveTrades({ mint }: { mint: string }) {
           </tr>
         </thead>
         <tbody>
-          {trades.map((t) => (
+          {trades.map((t, i) => (
             <tr
-              key={t.txHash}
+              key={`${t.txHash}-${i}`}
               className={cn(
                 "border-b border-border/40",
                 t.side === "buy" ? "flash-green" : "flash-red"

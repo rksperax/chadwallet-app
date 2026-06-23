@@ -51,7 +51,15 @@ export async function getTrending(limit = 20): Promise<TokenSummary[]> {
     30
   );
   const tokens = data?.tokens ?? [];
-  return tokens.map((t) => ({
+  // BirdEye occasionally returns the same mint more than once — dedupe by
+  // address so React keys stay unique and the list has no repeats.
+  const seen = new Set<string>();
+  const unique = tokens.filter((t) => {
+    if (!t.address || seen.has(t.address)) return false;
+    seen.add(t.address);
+    return true;
+  });
+  return unique.map((t) => ({
     address: t.address,
     symbol: t.symbol ?? "?",
     name: t.name ?? t.symbol ?? "Unknown",
