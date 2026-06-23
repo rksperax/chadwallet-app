@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/format";
 
-type Variant = "primary" | "secondary" | "ghost" | "buy" | "sell";
+type Variant = "primary" | "secondary" | "ghost" | "buy" | "sell" | "cta";
 
 const variants: Record<Variant, string> = {
   primary:
@@ -11,6 +11,7 @@ const variants: Record<Variant, string> = {
   ghost: "text-muted hover:text-foreground hover:bg-surface-2",
   buy: "bg-positive text-white hover:brightness-110 font-semibold",
   sell: "bg-negative text-white hover:brightness-110 font-semibold",
+  cta: "bg-indigo text-white hover:bg-indigo-2 font-semibold shadow-lg shadow-indigo/30",
 };
 
 export default function Button({

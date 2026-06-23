@@ -12,6 +12,14 @@ export const STORE_LINKS = {
   ios: "https://apps.apple.com/us/app/chadwallet/id6757367474",
 };
 
+// Update these to ChadWallet's real channels when available.
+export const SOCIAL_LINKS = {
+  x: "https://x.com",
+  discord: "https://discord.com",
+  instagram: "https://instagram.com",
+  youtube: "https://youtube.com",
+};
+
 export const RPC_URL =
   process.env.NEXT_PUBLIC_SOLANA_RPC_URL ||
   "https://api.mainnet-beta.solana.com";

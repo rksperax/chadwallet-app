@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /Users/rajan/Desktop/chadwallet-app; npm run lint 2>&1 | tail -4; echo \"=== chrome? ===\"; ls -d \"/Applications/Google Chrome.app\" 2>/dev/null && echo \"chrome present\" || echo \"no chrome\")",
+      "Read(//Applications/Google Chrome.app/**)"
+    ]
+  }
+}

@@ -16,6 +16,11 @@
   --primary-foreground: #04140d;
   --accent: #9945ff; /* solana purple */
 
+  /* fomo-style indigo/periwinkle used across the marketing landing */
+  --indigo: #5b54d6;
+  --indigo-2: #6f66ff;
+  --periwinkle: #c2c0f5;
+
   --positive: #16c784;
   --negative: #f6465d;
 }
@@ -31,11 +36,15 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
+  --color-indigo: var(--indigo);
+  --color-indigo-2: var(--indigo-2);
+  --color-periwinkle: var(--periwinkle);
   --color-positive: var(--positive);
   --color-negative: var(--negative);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-space-grotesk);
 }
 
 @layer base {
@@ -111,3 +120,74 @@
 }
 .flash-green { animation: flash-green 0.8s ease-out; }
 .flash-red { animation: flash-red 0.8s ease-out; }
+
+/* ===== Landing (fomo-style) ===== */
+.font-display {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+/* Deep-space hero: dark void on the left, a glowing planet arc top-right. */
+.hero-space {
+  background:
+    radial-gradient(75% 60% at 88% -8%, rgba(150, 170, 255, 0.45), rgba(60, 70, 140, 0) 55%),
+    radial-gradient(50% 45% at 96% -2%, rgba(210, 225, 255, 0.5), transparent 60%),
+    radial-gradient(60% 50% at 50% 120%, rgba(91, 84, 214, 0.18), transparent 70%),
+    #04050a;
+}
+
+/* The bright limb of a planet curving in from the top-right corner. */
+.planet-arc {
+  position: absolute;
+  top: -45vw;
+  right: -22vw;
+  width: 90vw;
+  height: 90vw;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 35% 65%, rgba(180, 205, 255, 0.55), rgba(40, 60, 130, 0.25) 45%, rgba(10, 14, 30, 0) 62%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.text-periwinkle-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, var(--periwinkle) 60%, #8e8be8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.float-soft { animation: float-soft 6s ease-in-out infinite; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+/* Orbiting community avatars */
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes orbit-spin-rev {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px dashed rgba(194, 192, 245, 0.18);
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+}
+.orbit-rotate { animation: orbit-spin 40s linear infinite; }
+.orbit-rotate-rev { animation: orbit-spin-rev 55s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-rotate, .orbit-rotate-rev, .float-soft, .marquee-track { animation: none; }
+}
