@@ -16,18 +16,29 @@ export default function CrossPlatform() {
       {/* Desktop terminal + phone device showcase */}
       <div className="relative mt-14">
         <div className="absolute -inset-x-10 top-0 bottom-10 -z-10 bg-[radial-gradient(55%_55%_at_50%_30%,rgba(91,84,214,0.25),transparent_70%)]" />
-        <div className="relative mx-auto max-w-4xl">
+        <div className="@container relative mx-auto max-w-4xl">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/brand/terminal-desktop.webp"
             alt="ChadWallet web terminal"
             className="w-full"
           />
+
+          {/* Re-brand the terminal header: cover the stock "fomo" wordmark with ChadWallet.
+              Sized in container-query units so it tracks the mockup at any width. */}
+          <div className="absolute left-[4.3%] top-[15.4%] flex items-center gap-[0.6cqw] rounded-[0.4cqw] bg-[#0a0a11] py-[0.4cqw] pl-[0.5cqw] pr-[1cqw]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/logo-mark.png" alt="" className="h-[2.4cqw] w-[2.4cqw]" />
+            <span className="text-[2cqw] font-extrabold leading-none tracking-tight text-white">
+              ChadWallet
+            </span>
+          </div>
+
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/brand/terminal-phone.webp"
             alt="ChadWallet mobile app"
-            className="float-soft absolute -right-2 bottom-4 w-[26%] max-w-[220px] sm:-right-6 sm:bottom-10"
+            className="animate-float absolute bottom-[7%] right-0 w-[30%] max-w-[280px]"
           />
         </div>
       </div>
