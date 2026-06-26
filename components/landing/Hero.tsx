@@ -1,56 +1,55 @@
-import Link from "next/link";
-import Button from "@/components/ui/Button";
-import Starfield from "./Starfield";
-import { DEFAULT_MINT } from "@/lib/constants";
+import LandingCtas from "./LandingCtas";
 
 export default function Hero() {
   return (
-    <section className="hero-space relative overflow-hidden">
-      <div className="planet-arc" />
-      <Starfield count={110} seed={11} />
+    <section className="relative flex min-h-[calc(100svh-6.4rem)] w-full flex-col items-center justify-center overflow-hidden">
+      {/* Real Earth-from-orbit backdrop — behind everything */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/brand/hero-space.webp"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 h-full w-full select-none object-cover"
+      />
 
-      <div className="relative mx-auto flex max-w-5xl flex-col items-center px-6 pb-28 pt-24 text-center sm:pt-32">
-        <h1 className="font-display text-7xl font-bold leading-none text-periwinkle-gradient sm:text-8xl md:text-[10rem]">
-          ChadWallet
-        </h1>
-
-        <p className="mt-8 font-display text-3xl font-bold tracking-tight sm:text-5xl">
-          where degens become legends.
-        </p>
-        <p className="mt-4 max-w-2xl text-balance text-base text-muted sm:text-lg">
-          From memecoins to viral tokens, trade any Solana coin in seconds.
-        </p>
-
-        <div className="mt-10 flex flex-col items-center gap-3.5 sm:flex-row">
-          <Link href={`/trade/${DEFAULT_MINT}`} className="w-full sm:w-auto">
-            <Button
-              variant="cta"
-              className="w-full min-w-[200px] rounded-2xl px-8 py-4 text-base sm:w-auto"
-            >
-              Start trading
-            </Button>
-          </Link>
-          <Link href="/#download" className="w-full sm:w-auto">
-            <Button
-              variant="glass"
-              className="w-full min-w-[200px] rounded-2xl px-8 py-4 text-base sm:w-auto"
-            >
-              Download app
-            </Button>
-          </Link>
-        </div>
-
-        {/* Chad mascot floating in orbit */}
-        <div className="relative mt-16 h-40 w-40 sm:h-52 sm:w-52">
-          <div className="absolute inset-0 rounded-full bg-indigo/30 blur-3xl" />
+      {/* Foreground content — sits ABOVE the astronaut so the buttons stay clickable */}
+      <div className="relative z-10 flex flex-col items-center gap-5 desktop:gap-8">
+        <div className="flex flex-col items-center gap-2 px-6 pt-10 text-center desktop:pt-20">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/brand/logo-mark.png"
+            src="/brand/logo-light.png"
             alt="ChadWallet"
-            className="float-soft relative h-full w-full object-contain drop-shadow-[0_0_40px_rgba(120,120,255,0.45)]"
+            className="h-28 w-28 rounded-2xl shadow-2xl desktop:h-36 desktop:w-36"
           />
+          <h1 className="mt-2 text-center text-[28px] font-black leading-tight tracking-tighter text-[#EAEDFF] desktop:text-[44px]">
+            ChadWallet
+          </h1>
+          <p className="text-center text-lg leading-6 tracking-tight text-[#EAEDFF] desktop:text-[22px]">
+            where degens become legends.
+          </p>
+          <p className="text-center tracking-tight text-[#D1D8FF]/60 desktop:text-[22px]">
+            Hunt every memecoin on Solana. One wallet to rule them all.
+          </p>
         </div>
+
+        <LandingCtas />
       </div>
+
+      {/* Floating astronaut — BEHIND the buttons, non-interactive so it never blocks clicks */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/brand/astronaut-mobile.webp"
+        alt=""
+        aria-hidden
+        className="animate-float-slow pointer-events-none relative z-0 -mt-16 w-[300px] desktop:hidden"
+      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/brand/astronaut.webp"
+        alt=""
+        aria-hidden
+        className="animate-float pointer-events-none relative z-0 -mt-20 hidden h-[520px] object-contain desktop:block"
+      />
     </section>
   );
 }

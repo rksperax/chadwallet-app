@@ -4,22 +4,23 @@
    Solana-flavored: vivid green + purple on deep near-black.
    To rebrand, edit the values in :root below. */
 :root {
-  --background: #07090e;
-  --surface: #0d111a;
-  --surface-2: #141a26;
-  --surface-3: #1b2230;
-  --border: #232c3b;
-  --foreground: #e9eef6;
-  --muted: #8a97ab;
+  /* Matched to fomo.family's palette */
+  --background: #060510; /* bg-primary */
+  --surface: #100e1c; /* bg-secondary (cards) */
+  --surface-2: #15132a;
+  --surface-3: #1c1936;
+  --border: #262240; /* bg-tertiary */
+  --foreground: #eaedff; /* text-primary */
+  --muted: #9a9fc4; /* text-secondary (periwinkle gray) */
 
-  --primary: #14f195; /* chad green */
+  --primary: #14f195; /* chad green (trading UI) */
   --primary-foreground: #04140d;
   --accent: #9945ff; /* solana purple */
 
-  /* fomo-style indigo/periwinkle used across the marketing landing */
-  --indigo: #5b54d6;
-  --indigo-2: #6f66ff;
-  --periwinkle: #c2c0f5;
+  /* fomo accent-primary (periwinkle indigo) */
+  --indigo: #606af7;
+  --indigo-2: #7b84ff;
+  --periwinkle: #d1d8ff;
 
   --positive: #16c784;
   --negative: #f6465d;
@@ -41,6 +42,17 @@
   --color-periwinkle: var(--periwinkle);
   --color-positive: var(--positive);
   --color-negative: var(--negative);
+
+  /* fomo/repo-style aliases used by the landing components */
+  --color-bg-primary: var(--background);
+  --color-bg-secondary: var(--surface);
+  --color-bg-tertiary: var(--border);
+  --color-text-primary: var(--foreground);
+  --color-text-secondary: rgba(234, 237, 255, 0.6);
+  --color-text-tertiary: rgba(234, 237, 255, 0.4);
+  --color-accent-primary: var(--indigo);
+
+  --breakpoint-desktop: 800px;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -124,7 +136,7 @@
 /* ===== Landing (fomo-style) ===== */
 .font-display {
   font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.045em;
 }
 
 /* Deep-space hero: dark void on the left, a glowing planet arc top-right. */
@@ -151,10 +163,19 @@
 }
 
 .text-periwinkle-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, var(--periwinkle) 60%, #8e8be8 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #d1d8ff 55%, #aeb4ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* fomo-style monospace eyebrow label */
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--indigo);
+  letter-spacing: 0.02em;
 }
 
 @keyframes float-soft {
@@ -162,6 +183,20 @@
   50% { transform: translateY(-12px); }
 }
 .float-soft { animation: float-soft 6s ease-in-out infinite; }
+
+/* fomo-style float used by the hero astronaut */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-26px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+  will-change: transform;
+}
+.animate-float-slow {
+  animation: float 10s ease-in-out infinite;
+  will-change: transform;
+}
 
 @keyframes twinkle {
   0%, 100% { opacity: 0.25; }

@@ -1,27 +1,35 @@
-import Link from "next/link";
 import Logo from "./Logo";
 import LoginButton from "./LoginButton";
-import { DEFAULT_MINT } from "@/lib/constants";
+import { STORE_LINKS } from "@/lib/constants";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-40 bg-transparent">
       <div className="mx-auto flex h-16 max-w-[1600px] items-center justify-between gap-4 px-4 sm:px-6">
-        <div className="flex items-center gap-8">
-          <Logo />
-          <nav className="hidden items-center gap-6 text-sm text-muted md:flex">
-            <Link href={`/trade/${DEFAULT_MINT}`} className="hover:text-foreground">
-              Trade
-            </Link>
-            <Link href="/#features" className="hover:text-foreground">
-              Features
-            </Link>
-            <Link href="/#download" className="hover:text-foreground">
-              Get the app
-            </Link>
-          </nav>
+        <Logo />
+        <div className="flex items-center gap-2 sm:gap-3">
+          <a
+            href={STORE_LINKS.ios}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download on the App Store"
+            className="hidden transition hover:opacity-90 md:block"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/app-store.png" alt="App Store" className="h-10 w-auto" />
+          </a>
+          <a
+            href={STORE_LINKS.android}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Get it on Google Play"
+            className="hidden transition hover:opacity-90 md:block"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/google-play.png" alt="Google Play" className="h-10 w-auto" />
+          </a>
+          <LoginButton />
         </div>
-        <LoginButton />
       </div>
     </header>
   );

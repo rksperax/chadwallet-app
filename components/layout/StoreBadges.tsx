@@ -1,31 +1,42 @@
 import { Apple, Play } from "lucide-react";
 import { STORE_LINKS } from "@/lib/constants";
 
-export default function StoreBadges({ className = "" }: { className?: string }) {
+export default function StoreBadges({
+  className = "",
+  compact = false,
+}: {
+  className?: string;
+  compact?: boolean;
+}) {
+  const pad = compact ? "px-3 py-1.5" : "px-4 py-2.5";
+  const iconSize = compact ? 18 : 24;
+  const eyebrow = compact ? "text-[8px]" : "text-[10px]";
+  const label = compact ? "text-xs" : "text-sm";
+
   return (
-    <div className={`flex flex-wrap items-center gap-3 ${className}`}>
+    <div className={`flex flex-wrap items-center gap-2 ${className}`}>
       <a
         href={STORE_LINKS.ios}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-3 rounded-xl border border-border bg-surface-2 px-4 py-2.5 transition hover:bg-surface-3"
+        className={`flex items-center gap-2 rounded-lg border border-border bg-white/[0.08] backdrop-blur-md transition hover:bg-white/[0.14] ${pad}`}
       >
-        <Apple size={24} />
+        <Apple size={iconSize} />
         <span className="leading-tight">
-          <span className="block text-[10px] text-muted">Download on the</span>
-          <span className="block text-sm font-semibold">App Store</span>
+          <span className={`block text-muted ${eyebrow}`}>Download on the</span>
+          <span className={`block font-semibold ${label}`}>App Store</span>
         </span>
       </a>
       <a
         href={STORE_LINKS.android}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-3 rounded-xl border border-border bg-surface-2 px-4 py-2.5 transition hover:bg-surface-3"
+        className={`flex items-center gap-2 rounded-lg border border-border bg-white/[0.08] backdrop-blur-md transition hover:bg-white/[0.14] ${pad}`}
       >
-        <Play size={22} />
+        <Play size={iconSize - 2} />
         <span className="leading-tight">
-          <span className="block text-[10px] text-muted">Get it on</span>
-          <span className="block text-sm font-semibold">Google Play</span>
+          <span className={`block text-muted ${eyebrow}`}>Get it on</span>
+          <span className={`block font-semibold ${label}`}>Google Play</span>
         </span>
       </a>
     </div>

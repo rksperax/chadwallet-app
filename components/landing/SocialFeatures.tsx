@@ -10,12 +10,12 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col overflow-hidden rounded-3xl border border-border bg-surface p-6 transition hover:border-indigo/40">
-      <div className="text-xs font-bold uppercase tracking-wider text-indigo-2">
-        {eyebrow}
-      </div>
-      <h3 className="mt-2 font-display text-2xl font-bold leading-snug">{title}</h3>
-      <div className="mt-5 flex-1">{children}</div>
+    <div className="flex min-h-[360px] flex-1 flex-col overflow-hidden rounded-[25px] border border-border bg-surface p-7 transition-colors duration-300 hover:border-white/[0.12]">
+      <div className="eyebrow text-sm">{eyebrow}</div>
+      <h3 className="mt-2 font-display text-2xl font-bold leading-tight tracking-tight sm:text-[28px]">
+        {title}
+      </h3>
+      <div className="mt-6 flex-1">{children}</div>
     </div>
   );
 }
@@ -127,10 +127,12 @@ export default function SocialFeatures() {
   return (
     <section id="features" className="mx-auto max-w-6xl px-6 py-24">
       <div className="mb-12">
-        <h2 className="font-display text-4xl font-bold sm:text-6xl">
+        <h2 className="font-display text-4xl font-bold tracking-tighter sm:text-6xl">
           never miss out again
         </h2>
-        <p className="mt-3 text-lg text-muted">the only social-first trading app</p>
+        <p className="mt-3 text-lg tracking-tight text-[#EAEDFF]/60 sm:text-2xl">
+          the only social-first trading app
+        </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">

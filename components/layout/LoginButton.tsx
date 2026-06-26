@@ -2,7 +2,7 @@
 
 import { usePrivy } from "@privy-io/react-auth";
 import { useWallets } from "@privy-io/react-auth/solana";
-import { LogOut, Wallet } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { useState } from "react";
 import Button from "@/components/ui/Button";
 import { shortAddress } from "@/lib/format";
@@ -22,8 +22,8 @@ function PrivyLogin() {
 
   if (!authenticated) {
     return (
-      <Button onClick={login}>
-        <Wallet size={16} /> Sign in
+      <Button variant="secondary" className="font-bold" onClick={login}>
+        Login
       </Button>
     );
   }
@@ -71,9 +71,10 @@ export default function LoginButton() {
     return (
       <Button
         variant="secondary"
+        className="font-bold"
         title="Set NEXT_PUBLIC_PRIVY_APP_ID in .env.local to enable sign-in"
       >
-        <Wallet size={16} /> Sign in
+        Login
       </Button>
     );
   }

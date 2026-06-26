@@ -1,72 +1,73 @@
 import Link from "next/link";
-import Logo from "./Logo";
-import { DEFAULT_MINT, SOCIAL_LINKS, STORE_LINKS } from "@/lib/constants";
-
-const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] = [
-  {
-    heading: "Product",
-    links: [
-      { label: "Trade", href: `/trade/${DEFAULT_MINT}` },
-      { label: "Features", href: "/#features" },
-      { label: "Get the app", href: "/#download" },
-    ],
-  },
-  {
-    heading: "Social",
-    links: [
-      { label: "X / Twitter", href: SOCIAL_LINKS.x },
-      { label: "Discord", href: SOCIAL_LINKS.discord },
-      { label: "Instagram", href: SOCIAL_LINKS.instagram },
-      { label: "YouTube", href: SOCIAL_LINKS.youtube },
-    ],
-  },
-  {
-    heading: "Download",
-    links: [
-      { label: "iOS App Store", href: STORE_LINKS.ios },
-      { label: "Google Play", href: STORE_LINKS.android },
-    ],
-  },
-];
+import { SOCIAL_LINKS, STORE_LINKS } from "@/lib/constants";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-border bg-surface/40">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-[2fr_1fr_1fr_1fr]">
+    <footer className="mx-auto flex w-full max-w-[1400px] flex-col items-start justify-between gap-10 px-10 pb-12 pt-8 desktop:flex-row">
+      <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
-          <Logo />
-          <p className="max-w-xs text-sm text-muted">
-            where degens become legends. The social-first trading app for Solana.
-          </p>
+          <Link
+            aria-label="ChadWallet home"
+            className="flex items-center gap-2 text-text-primary"
+            href="/"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/logo-light.png"
+              alt="ChadWallet"
+              width={30}
+              height={30}
+              className="h-7 w-7 rounded-lg"
+            />
+            <span className="text-xl font-black tracking-tight">ChadWallet</span>
+          </Link>
+          <div className="text-2xl leading-7 tracking-tighter text-text-secondary">
+            where degens become legends.
+          </div>
+        </div>
+        <div className="hidden text-text-tertiary desktop:block">
+          © {year} ChadWallet
+        </div>
+      </div>
+
+      <div className="flex flex-col items-start gap-8 desktop:flex-row desktop:gap-2">
+        <div className="flex min-w-40 flex-col items-start gap-2">
+          <div className="font-mono text-sm tracking-wider text-text-tertiary">SOCIAL</div>
+          <FooterLink href={SOCIAL_LINKS.discord}>Discord</FooterLink>
+          <FooterLink href={SOCIAL_LINKS.x}>X/Twitter</FooterLink>
+          <FooterLink href={SOCIAL_LINKS.instagram}>Instagram</FooterLink>
         </div>
 
-        {COLUMNS.map((col) => (
-          <div key={col.heading}>
-            <div className="mb-3 text-xs font-bold uppercase tracking-wider text-muted">
-              {col.heading}
-            </div>
-            <ul className="space-y-2 text-sm">
-              {col.links.map((l) => (
-                <li key={l.label}>
-                  <Link
-                    href={l.href}
-                    target={l.href.startsWith("http") ? "_blank" : undefined}
-                    rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="text-muted transition hover:text-foreground"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <div className="flex min-w-40 flex-col items-start gap-2">
+          <div className="font-mono text-sm tracking-wider text-text-tertiary">DOWNLOAD</div>
+          <FooterLink href={STORE_LINKS.ios}>App Store</FooterLink>
+          <FooterLink href={STORE_LINKS.android}>Google Play</FooterLink>
+        </div>
+
+        <div className="flex min-w-40 flex-col items-start gap-2">
+          <div className="font-mono text-sm tracking-wider text-text-tertiary">LEGAL</div>
+          <FooterLink href="#">Privacy Policy</FooterLink>
+          <FooterLink href="#">Terms of Service</FooterLink>
+        </div>
       </div>
 
-      <div className="border-t border-border py-5 text-center text-xs text-muted">
-        © {new Date().getFullYear()} ChadWallet. Crypto trading involves risk —
-        data by BirdEye, swaps by Jupiter.
-      </div>
+      <div className="block text-text-tertiary desktop:hidden">© {year} ChadWallet</div>
     </footer>
+  );
+}
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const external = href.startsWith("http");
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className="text-sm text-text-tertiary transition-colors hover:text-text-secondary"
+    >
+      {children}
+    </a>
   );
 }
