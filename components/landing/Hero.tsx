@@ -14,8 +14,8 @@ export default function Hero() {
 
       {/* Foreground content — sits ABOVE the astronaut so the buttons stay clickable */}
       <div className="relative z-10 flex flex-col items-center gap-5 desktop:gap-8">
-        <div className="flex flex-col items-center gap-3 px-6 pt-10 text-center desktop:pt-20">
-          <h1 className="text-6xl font-black leading-none tracking-tighter text-[#EAEDFF] sm:text-8xl desktop:text-[120px]">
+        <div className="flex w-full max-w-[21rem] flex-col items-center gap-3 px-6 pt-10 text-center sm:max-w-xl desktop:max-w-none desktop:pt-20">
+          <h1 className="text-[2.75rem] font-black leading-none tracking-tighter text-[#EAEDFF] sm:text-8xl desktop:text-[120px]">
             ChadWallet
           </h1>
           <p className="mt-2 text-center text-xl leading-tight tracking-tight text-[#EAEDFF] desktop:text-[34px]">
