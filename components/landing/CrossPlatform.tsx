@@ -38,7 +38,7 @@ export default function CrossPlatform() {
           <img
             src="/brand/terminal-phone.webp"
             alt="ChadWallet mobile app"
-            className="animate-float absolute bottom-[7%] right-0 w-[30%] max-w-[280px]"
+            className="animate-float absolute bottom-[12%] right-[-3%] w-[33%] max-w-[320px]"
           />
         </div>
       </div>
